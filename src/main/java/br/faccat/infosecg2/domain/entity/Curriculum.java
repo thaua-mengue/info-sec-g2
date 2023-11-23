@@ -1,6 +1,7 @@
 package br.faccat.infosecg2.domain.entity;
 
 import br.faccat.infosecg2.domain.dto.CurriculumRequest;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
+@JsonIgnoreProperties(value = {"curriculum", "hibernateLazyInitializer"})
 public class Curriculum {
 
     @Id
