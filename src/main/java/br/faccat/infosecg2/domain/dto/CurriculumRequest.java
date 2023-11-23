@@ -10,12 +10,8 @@ import lombok.NoArgsConstructor;
 public class CurriculumRequest {
 
     private String name;
-
     private String phoneNumber;
-
     private String email;
-
     private String webSite;
-
     private String experience;
 }

@@ -28,8 +28,14 @@ public class CurriculumController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveCurriculum(@RequestBody CurriculumRequest curriculumRequest) {
-        curriculumService.saveCurriculum(curriculumRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<Curriculum> saveCurriculum(
+            @RequestHeader(value = "X-Name") String name,
+            @RequestHeader(value = "X-PhoneNumber", required = false) String phoneNumber,
+            @RequestHeader(value = "X-Email") String email,
+            @RequestHeader(value = "X-WebSite", required = false) String webSite,
+            @RequestHeader(value = "X-Experience") String experience) {
+
+        var curriculumRequest = new CurriculumRequest(name, phoneNumber, email, webSite, experience);
+        return ResponseEntity.status(HttpStatus.CREATED).body(curriculumService.saveCurriculum(curriculumRequest));
     }
 }
