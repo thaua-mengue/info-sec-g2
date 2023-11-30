@@ -51,6 +51,16 @@ public class CurriculumService {
         }
     }
 
+    public void deleteCurriculumById(Long id, String authorization) {
+        try {
+            verifyAuthorization(authorization);
+            curriculumRepository.deleteById(id);
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+            throw ex;
+        }
+    }
+
     private void verifyAuthorization(String authorization) {
         if (!AUTHORIZATIONS_LIST.contains(authorization))
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Operação não autorizada.");

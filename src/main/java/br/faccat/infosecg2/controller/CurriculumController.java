@@ -6,6 +6,7 @@ import br.faccat.infosecg2.service.CurriculumService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,5 +46,13 @@ public class CurriculumController {
 
         var curriculumRequest = new CurriculumRequest(name, phoneNumber, email, webSite, experience);
         return ResponseEntity.status(HttpStatus.CREATED).body(curriculumService.saveCurriculum(authorization, curriculumRequest));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(
+            @PathVariable Long id,
+            @RequestHeader (value = "Authorization") String authorization) {
+        curriculumService.getCurriculumById(id, authorization);
+        return ResponseEntity.ok().build();
     }
 }
