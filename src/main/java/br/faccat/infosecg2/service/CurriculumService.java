@@ -6,12 +6,14 @@ import br.faccat.infosecg2.repository.CurriculumRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CurriculumService {
 
     // O ideal seria essa lista ficar pelo menos em um config-repo para poder ser alterado sem deploy e não ficar exposto no código.
